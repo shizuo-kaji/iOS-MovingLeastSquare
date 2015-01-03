@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BV1-FR-VrT">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--GLKit View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <glkViewController preferredFramesPerSecond="30" id="BV1-FR-VrT" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TiJ-Yn-mIF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jjb-t6-CVp"/>
+                    </layoutGuides>
+                    <glkView key="view" contentMode="scaleToFill" id="3se-qz-xqx">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmF-KM-ReH">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="MLS" id="kLO-h6-Dz4">
+                                        <barButtonItem key="leftBarButtonItem" title="Image" id="xdK-FA-AGh">
+                                            <connections>
+                                                <action selector="pushButton_ReadImage:" destination="SZV-WD-TEh" id="kMp-48-DzI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Init" id="tTq-sG-lca">
+                                            <connections>
+                                                <action selector="pushButton_Initialize:" destination="SZV-WD-TEh" id="7yo-BI-y2c"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jmF-KM-ReH" secondAttribute="trailing" id="9bh-wr-F8K"/>
+                            <constraint firstItem="jmF-KM-ReH" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="ieO-zY-mv4"/>
+                            <constraint firstItem="jmF-KM-ReH" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="jSJ-Tc-wCH"/>
+                        </constraints>
+                    </glkView>
+                </glkViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-74" y="-598"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <nil key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
