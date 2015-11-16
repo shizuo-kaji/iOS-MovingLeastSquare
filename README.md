@@ -1,5 +1,6 @@
 Moving least square deformation for iOS
-Shizuo KAJI
+by Shizuo KAJI
+
 =============
 Multi-touch on the image to deform.
 Look at the following paper for theoretical background.

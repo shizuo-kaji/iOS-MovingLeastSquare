@@ -10,6 +10,7 @@
 		2A7E2C2E19198BD200BEBB5E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A7E2C2D19198BD200BEBB5E /* Default.png */; };
 		2AAD318219198B3C003C66EC /* LICENCE in Resources */ = {isa = PBXBuildFile; fileRef = 2AAD318019198B3C003C66EC /* LICENCE */; };
 		2AAD318319198B3C003C66EC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2AAD318119198B3C003C66EC /* README.md */; };
+		2AED3BC51BB77F3400EF8D14 /* AppIcon58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = 2AED3BC41BB77F3400EF8D14 /* AppIcon58x58.png */; };
 		2AF136CE18CA26CB007E999A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF136CD18CA26CB007E999A /* Foundation.framework */; };
 		2AF136D018CA26CB007E999A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF136CF18CA26CB007E999A /* CoreGraphics.framework */; };
 		2AF136D218CA26CB007E999A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF136D118CA26CB007E999A /* UIKit.framework */; };
@@ -29,6 +30,7 @@
 		2A7E2C2D19198BD200BEBB5E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2AAD318019198B3C003C66EC /* LICENCE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE; sourceTree = SOURCE_ROOT; };
 		2AAD318119198B3C003C66EC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
+		2AED3BC41BB77F3400EF8D14 /* AppIcon58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon58x58.png; sourceTree = "<group>"; };
 		2AF136CA18CA26CB007E999A /* iPad-MLS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iPad-MLS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF136CD18CA26CB007E999A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2AF136CF18CA26CB007E999A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -112,6 +114,7 @@
 				2AF136ED18CA26CB007E999A /* ViewController.h */,
 				2AF136EE18CA26CB007E999A /* ViewController.m */,
 				2AF136F018CA26CB007E999A /* Images.xcassets */,
+				2AED3BC41BB77F3400EF8D14 /* AppIcon58x58.png */,
 				2AF136D818CA26CB007E999A /* Supporting Files */,
 			);
 			path = "iPad-MLS";
@@ -154,7 +157,7 @@
 		2AF136C218CA26CB007E999A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "mcg-q";
 				TargetAttributes = {
 					2AF136C918CA26CB007E999A = {
@@ -192,6 +195,7 @@
 				2A7E2C2E19198BD200BEBB5E /* Default.png in Resources */,
 				2AF136F118CA26CB007E999A /* Images.xcassets in Resources */,
 				2AF136DC18CA26CB007E999A /* InfoPlist.strings in Resources */,
+				2AED3BC51BB77F3400EF8D14 /* AppIcon58x58.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,8 +259,9 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iOS Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -271,9 +276,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6C129D15-C4ED-435D-9D39-AC2FDC980393";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include/eigen3/;
@@ -296,8 +301,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iOS Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -307,8 +311,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PROVISIONING_PROFILE = "6C129D15-C4ED-435D-9D39-AC2FDC980393";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include/eigen3/;
@@ -326,6 +330,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iPad-MLS/iPad-MLS-Prefix.pch";
 				INFOPLIST_FILE = "iPad-MLS/iPad-MLS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.lasm.iPad-MLS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -342,6 +348,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iPad-MLS/iPad-MLS-Prefix.pch";
 				INFOPLIST_FILE = "iPad-MLS/iPad-MLS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.lasm.iPad-MLS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

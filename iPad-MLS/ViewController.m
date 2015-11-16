@@ -71,6 +71,8 @@ using namespace Eigen;
     mainImage = [[ImageMesh alloc] initWithUIImage:pImage VerticalDivisions:VDIV HorizontalDivisions:HDIV];
     [self loadTexture:pImage];
     
+    mode = 0;
+    
     [self setupGL];
 }
 
@@ -122,12 +124,13 @@ using namespace Eigen;
 
 - (void)setupScreen{
     float gl_height, gl_width, ratio;
-    if (self.interfaceOrientation<3) {
-        screen.height = [UIScreen mainScreen].bounds.size.height;
-        screen.width = [UIScreen mainScreen].bounds.size.width;
-    }else{
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
         screen.height = [UIScreen mainScreen].bounds.size.width;
         screen.width = [UIScreen mainScreen].bounds.size.height;
+    }else{
+        screen.height = [UIScreen mainScreen].bounds.size.height;
+        screen.width = [UIScreen mainScreen].bounds.size.width;
     }
     if (screen.width*mainImage.image_height<screen.height*mainImage.image_width) {
         ratio = mainImage.image_width/screen.width;
@@ -249,12 +252,14 @@ using namespace Eigen;
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     NSSet *allTouches = [event allTouches];
-    int count = [allTouches count];
+    NSUInteger count = [allTouches count];
     std::vector<Vector2f> p(count),q(count);
     for(int i=0;i<count;i++){
         UITouch *touch = [[allTouches allObjects] objectAtIndex:i];
         CGPoint pt = [touch locationInView:self.view];
+        // current location
         q[i] << (pt.x - screen.width/2.0)*ratio_width, (screen.height/2.0 - pt.y)*ratio_height;
+        // original location
         p[i] = *(Vector2f *)CFDictionaryGetValue(ipts, (__bridge void*)touch);
     }
     std::vector<float> w(count);
@@ -279,22 +284,22 @@ using namespace Eigen;
             if(touched){
                 continue;
             }
-            // barycentre
-            Vector2f center = Vector2f::Zero();
-            Vector2f icenter = Vector2f::Zero();
+            // barycentre of the original (p) and the current (q) touched points
+            Vector2f pcenter = Vector2f::Zero();
+            Vector2f qcenter = Vector2f::Zero();
             float wsum = 0;
             for(int j=0;j<count;j++){
                 wsum += w[j];
-                center += w[j] * q[j];
-                icenter += w[j] * p[j];
+                pcenter += w[j] * p[j];
+                qcenter += w[j] * q[j];
             }
-            center /= wsum;
-            icenter /= wsum;
-            // centred coordinates
+            pcenter /= wsum;
+            qcenter /= wsum;
+            // relative coordinates
             std::vector<Vector2f> ph(count), qh(count);
             for(int j=0;j<count;j++){
-                ph[j] = p[j]-icenter;
-                qh[j] = q[j]-center;
+                ph[j] = p[j]-pcenter;
+                qh[j] = q[j]-qcenter;
             }
             // similarity matrix
             Matrix2f M,P,Q;
@@ -306,7 +311,12 @@ using namespace Eigen;
                 M += w[j]*Q*P;
                 mu += w[j] * ph[j].squaredNorm();
             }
-            mainImage.xy[i] = M * (mainImage.ixy[i]-icenter) / mu + center;
+            if(mode==0){
+                mainImage.xy[i] = M * (mainImage.ixy[i]-pcenter) / mu + qcenter;
+            }else if(mode==1){
+                mainImage.xy[i] = M * (mainImage.ixy[i]-pcenter) / mu;
+                mainImage.xy[i] = (mainImage.ixy[i]-pcenter).norm() * mainImage.xy[i].normalized() + qcenter;
+            }
         }
     }
     // update
@@ -322,6 +332,11 @@ using namespace Eigen;
 - (IBAction)pushButton_Initialize:(UIBarButtonItem *)sender {
     NSLog(@"Initialize");
     [mainImage initialize];
+}
+
+// mode change
+-(IBAction)pushSeg:(UISegmentedControl *)sender{
+    mode = (int)sender.selectedSegmentIndex;
 }
 
 // Load new image
@@ -384,7 +399,6 @@ using namespace Eigen;
 
 // Devise orientation
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
-    NSLog(@"Orientation changed:%d",self.interfaceOrientation);
     [self setupScreen];
 }
 

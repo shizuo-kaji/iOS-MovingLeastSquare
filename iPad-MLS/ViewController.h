@@ -40,11 +40,16 @@
     
     // image selector
     UIPopoverController *imagePopController;
+    
+    //UI
+    IBOutlet UISwitch *sw;
+    int mode;
 }
 
 - (IBAction)pushButton_ReadImage:(UIBarButtonItem *)sender;
 - (IBAction)pushButton_Initialize:(UIBarButtonItem *)sender;
 - (IBAction)pushButton_HowToUse:(UIBarButtonItem *)sender;
+- (IBAction)pushSeg:(UISegmentedControl *)sender;
 
 @end
 
