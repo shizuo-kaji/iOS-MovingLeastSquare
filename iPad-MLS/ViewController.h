@@ -32,7 +32,6 @@
 #import "ImageMesh.h"
 
 @interface ViewController : GLKViewController
-<<<<<<< HEAD
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate,
         AVCaptureVideoDataOutputSampleBufferDelegate>{
             
@@ -60,24 +59,6 @@
             CVOpenGLESTextureRef textureObject;
             GLuint cameraTextureName;
             
-=======
-<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate>{
-    // mesh data
-    ImageMesh *mainImage;
-    CFMutableDictionaryRef ipts;
-    
-    // screen size
-    float ratio_height;
-    float ratio_width;
-    CGSize screen;
-    
-    // image selector
-    UIPopoverController *imagePopController;
-    
-    //UI
-    IBOutlet UISwitch *sw;
-    int mode;
->>>>>>> 0e57c80a9c08089ee89aaa5ff8f72b1737d184cb
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -90,10 +71,7 @@
 - (IBAction)pushButton_Initialize:(UIBarButtonItem *)sender;
 - (IBAction)pushButton_HowToUse:(UIBarButtonItem *)sender;
 - (IBAction)pushSeg:(UISegmentedControl *)sender;
-<<<<<<< HEAD
 - (IBAction)pushCamera:(UISwitch *)sender;
 - (IBAction)pushSaveImg:(UIBarButtonItem *)sender;
-=======
->>>>>>> 0e57c80a9c08089ee89aaa5ff8f72b1737d184cb
 
 @end
