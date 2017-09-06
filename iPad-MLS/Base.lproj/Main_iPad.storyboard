@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BV1-FR-VrT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="ipad10_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--GLKit View Controller-->
@@ -10,16 +14,15 @@
             <objects>
                 <glkViewController preferredFramesPerSecond="30" id="BV1-FR-VrT" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TiJ-Yn-mIF"/>
-                        <viewControllerLayoutGuide type="bottom" id="Jjb-t6-CVp"/>
+                        <viewControllerLayoutGuide type="top" id="wKq-m1-7zi"/>
+                        <viewControllerLayoutGuide type="bottom" id="BZG-8A-Giv"/>
                     </layoutGuides>
                     <glkView key="view" contentMode="scaleToFill" id="3se-qz-xqx">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmF-KM-ReH">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="44"/>
                                 <items>
                                     <navigationItem title="MLS" id="kLO-h6-Dz4">
                                         <barButtonItem key="leftBarButtonItem" title="Image" id="xdK-FA-AGh">
@@ -35,14 +38,82 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0e5-mS-HoZ">
+                                <rect key="frame" x="0.0" y="1068" width="834" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="mDd-OF-fOx">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="bqT-xd-01Y">
+                                            <rect key="frame" x="20" y="7" width="121" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Sim"/>
+                                                <segment title="Rigid"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="pushSeg:" destination="SZV-WD-TEh" eventType="valueChanged" id="YQl-0n-DmI"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="Skg-nU-Hr2">
+                                        <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="hR8-iY-aCK">
+                                            <rect key="frame" x="151" y="6.5" width="51" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="pushCamera:" destination="SZV-WD-TEh" eventType="valueChanged" id="f2C-9u-lUO"/>
+                                            </connections>
+                                        </switch>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="lbv-yd-y7e">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dLD-2Y-s4f">
+                                            <rect key="frame" x="212" y="7" width="34" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Save"/>
+                                            <connections>
+                                                <action selector="pushSaveImg:" destination="SZV-WD-TEh" eventType="touchDown" id="Kzn-aI-yn3"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="95S-1Q-ZUa">
+                                <rect key="frame" x="387" y="1080" width="60" height="50"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="awr-C2-gQe">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xLu-LA-iLQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dr4-hp-88U">
+                                                        <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="awr-C2-gQe" firstAttribute="bottom" secondItem="95S-1Q-ZUa" secondAttribute="bottomMargin" id="3CA-zE-KDv"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="jmF-KM-ReH" secondAttribute="trailing" id="9bh-wr-F8K"/>
-                            <constraint firstItem="jmF-KM-ReH" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="ieO-zY-mv4"/>
-                            <constraint firstItem="jmF-KM-ReH" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="jSJ-Tc-wCH"/>
+                            <constraint firstItem="jmF-KM-ReH" firstAttribute="top" secondItem="wKq-m1-7zi" secondAttribute="bottom" id="4Zp-d0-aVA"/>
+                            <constraint firstItem="95S-1Q-ZUa" firstAttribute="centerX" secondItem="0e5-mS-HoZ" secondAttribute="centerX" id="6N6-fY-8gk"/>
+                            <constraint firstAttribute="trailing" secondItem="jmF-KM-ReH" secondAttribute="trailing" id="FDw-EF-PSK"/>
+                            <constraint firstItem="0e5-mS-HoZ" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="Rzh-rs-TKV"/>
+                            <constraint firstItem="95S-1Q-ZUa" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" constant="1080" id="aY9-Mm-vHr"/>
+                            <constraint firstItem="95S-1Q-ZUa" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" constant="387" id="bfl-28-ab0"/>
+                            <constraint firstItem="BZG-8A-Giv" firstAttribute="top" secondItem="0e5-mS-HoZ" secondAttribute="bottom" id="cEJ-iu-29J"/>
+                            <constraint firstAttribute="trailing" secondItem="0e5-mS-HoZ" secondAttribute="trailing" id="dhV-MM-MoG"/>
+                            <constraint firstItem="jmF-KM-ReH" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="jO2-VR-CYs"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="95S-1Q-ZUa" secondAttribute="bottom" constant="-18" id="mPK-Y2-xIC"/>
                         </constraints>
                     </glkView>
+                    <connections>
+                        <outlet property="cameraSw" destination="hR8-iY-aCK" id="iTX-1u-wVM"/>
+                    </connections>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,6 +123,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="ipad10_5.fullscreen"/>
     </simulatedMetricsContainer>
 </document>

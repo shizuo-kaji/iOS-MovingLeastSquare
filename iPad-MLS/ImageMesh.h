@@ -33,20 +33,17 @@ using namespace Eigen;
 @interface ImageMesh : NSObject
 
 // mesh division
-@property int verticalDivisions;
-@property int horizontalDivisions;
-@property unsigned int indexArrsize;
+@property GLint verticalDivisions,horizontalDivisions;
+@property int indexArrsize;
 // vertex indices for triangle strip
 @property int *vertexIndices;
 
 // OpenGL
-@property GLfloat *verticesArr;
-@property GLfloat *textureCoordsArr;
+@property GLfloat *verticesArr, *textureCoordsArr;
 @property GLKTextureInfo *texture;
 
 // image size
-@property float image_width;
-@property float image_height;
+@property float image_width,image_height;
 
 // number of vertices
 @property int numVertices;
@@ -55,8 +52,7 @@ using namespace Eigen;
 @property float radius;
 
 // vertex coordinates
-@property Vector2f *xy;
-@property Vector2f *ixy;
+@property Vector2f *xy, *ixy;
 // flag for selected points
 @property bool *selected;
 // vertex index of triangles
@@ -67,8 +63,8 @@ using namespace Eigen;
 - (void)dealloc;
 
 // init
-- (ImageMesh*)initWithUIImage:(UIImage*)uiImage VerticalDivisions:(GLuint)verticalDivisions HorizontalDivisions:(GLuint)horizotalDivisions;
-
+- (ImageMesh*)initWithVDiv:(GLuint)lverticalDivisions HDiv:(GLuint)lhorizontalDivisions;
+-(void) loadImage:(UIImage*)pImage;
 - (void)deform;
 - (void)initialize;
 

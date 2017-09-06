@@ -28,54 +28,17 @@ using namespace Eigen;
 
 @implementation ImageMesh
 
-@synthesize verticalDivisions;
-@synthesize horizontalDivisions;
+@synthesize verticalDivisions,horizontalDivisions;
 
-@synthesize verticesArr;
-@synthesize textureCoordsArr;
-@synthesize vertexIndices;
-@synthesize indexArrsize;
+@synthesize verticesArr,textureCoordsArr,vertexIndices,indexArrsize;
 @synthesize texture;
 
-@synthesize image_width;
-@synthesize image_height;
+@synthesize image_width,image_height;
 
-
-@synthesize numVertices;
-@synthesize radius;
-@synthesize xy;
-@synthesize ixy;
+@synthesize xy,ixy,radius;
 @synthesize selected;
 @synthesize triangles;
-@synthesize numTriangles;
-
-/** copyWithZone **/
-- (id)copyWithZone:(NSZone *)zone{
-    ImageMesh *clone =
-    [[[self class] allocWithZone:zone] init];
-    
-    [clone setVerticalDivisions:self.verticalDivisions];
-    [clone setHorizontalDivisions:self.horizontalDivisions];
-    [clone setIndexArrsize:indexArrsize];
-    [clone setVertexIndices:vertexIndices];
-    
-    [clone setVerticesArr:self.verticesArr];
-    [clone setTextureCoordsArr:textureCoordsArr];
-    [clone setTexture:self.texture];
-    
-    [clone setImage_width:self.image_width];
-    [clone setImage_height:self.image_height];
-    
-    [clone setRadius:self.radius];
-    [clone setSelected:self.selected];
-    [clone setTriangles:self.triangles];
-    [clone setNumVertices:self.numVertices];
-    [clone setNumTriangles:self.numTriangles];
-    [clone setXy:self.xy];
-    [clone setIxy:self.ixy];
-    
-    return  clone;
-}
+@synthesize numTriangles,numVertices;
 
 // dealloc
 - (void)dealloc{
@@ -89,15 +52,13 @@ using namespace Eigen;
 }
 
 // init
-- (ImageMesh*)initWithUIImage:(UIImage*)uiImage VerticalDivisions:(GLuint)lverticalDivisions HorizontalDivisions:(GLuint)lhorizontalDivisions{
+- (ImageMesh*)initWithVDiv:(GLuint)lverticalDivisions HDiv:(GLuint)lhorizontalDivisions{
     if (self = [super init]) {
         verticalDivisions = lverticalDivisions;
         horizontalDivisions = lhorizontalDivisions;
         numVertices = (verticalDivisions+1) * (horizontalDivisions+1);
         indexArrsize = 2 * verticalDivisions * (horizontalDivisions+1);
         numTriangles = 2 * verticalDivisions * horizontalDivisions;
-        image_width = (float)uiImage.size.width;
-        image_height = (float)uiImage.size.height;
         //malloc
         verticesArr = (GLfloat *)malloc(2 * indexArrsize * sizeof(*verticesArr));
         textureCoordsArr = (GLfloat *)malloc(2 * indexArrsize * sizeof(*textureCoordsArr));
@@ -135,17 +96,44 @@ using namespace Eigen;
         for (int j=0; j< verticalDivisions; j++) {
             for (int i=0; i <= horizontalDivisions; i++) {
                 float currX = i * xIncrease;
-                float currY = j * yIncrease;
+                float currY = 1- j * yIncrease;
                 textureCoordsArr[count++] = currX;
-                textureCoordsArr[count++] = currY + yIncrease;
+                textureCoordsArr[count++] = currY - yIncrease;
                 textureCoordsArr[count++] = currX;
                 textureCoordsArr[count++] = currY;
             }
         }
-        [self initialize];
     }
     return self;
 }
+
+-(void) loadImage:(UIImage*)pImage{
+    NSError *error;
+    NSDictionary* options = nil; //@{GLKTextureLoaderOriginBottomLeft: @YES};
+    //resize
+    CGFloat oldWidth = pImage.size.width;
+    CGFloat oldHeight = pImage.size.height;
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? 1024 / oldWidth : 1024 / oldHeight;
+    CGSize size = CGSizeMake(oldWidth * scaleFactor, oldHeight * scaleFactor);
+    UIGraphicsBeginImageContext(size);
+    [pImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    //generate texture
+    UIImage *pngimage = [UIImage imageWithData:UIImagePNGRepresentation(image)];
+    NSLog(@"GL Error = %u", glGetError());
+    texture = [GLKTextureLoader textureWithCGImage:pngimage.CGImage options:options error:&error];
+    if(error)NSLog(@"Error loading texture from image: %@",error);
+    image_width = (float)image.size.width;
+    image_height = (float)image.size.height;
+    // compute touch radius for each vertex
+    float r = image_width/(float)(2*horizontalDivisions);
+    radius = r*r;
+    [self initialize];
+    [self deform];
+}
+
+
 // set coordinates
 - (void)deform{
     // prepare OpenGL vertices

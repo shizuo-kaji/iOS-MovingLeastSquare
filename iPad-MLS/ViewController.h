@@ -24,30 +24,54 @@
 
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
+#import <OpenGLES/ES2/glext.h>
+#import <Foundation/Foundation.h>
 #import <CoreFoundation/CoreFoundation.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreVideo/CVOpenGLESTextureCache.h>
 #import "ImageMesh.h"
 
 @interface ViewController : GLKViewController
-<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate>{
-    // mesh data
-    ImageMesh *mainImage;
-    CFMutableDictionaryRef ipts;
-    
-    // screen size
-    float ratio_height;
-    float ratio_width;
-    CGSize screen;
-    
-    // image selector
-    UIPopoverController *imagePopController;
+<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate,
+        AVCaptureVideoDataOutputSampleBufferDelegate>{
+            
+            // mesh data
+            ImageMesh *mainImage;
+            CFMutableDictionaryRef ipts;
+            
+            // is the camera on?
+            BOOL cameraMode;
+            
+            // screen size
+            float ratio_height, ratio_width;
+            CGSize screen;
+            
+            //UI
+            IBOutlet UISwitch *sw;
+            int mode;
+            
+            // for capturing
+            AVCaptureDevice *captureDevice;
+            AVCaptureDeviceInput *deviceInput;
+            AVCaptureSession *session;
+            AVCaptureVideoDataOutput *videoOutput;
+            CVOpenGLESTextureCacheRef textureCache;
+            CVOpenGLESTextureRef textureObject;
+            GLuint cameraTextureName;
+            
 }
+@property (strong, nonatomic) EAGLContext *context;
+@property (strong, nonatomic) GLKBaseEffect *effect;
+@property (weak, nonatomic) IBOutlet UISwitch *cameraSw;
+
+- (void)setupGL;
+- (void)tearDownGL;
 
 - (IBAction)pushButton_ReadImage:(UIBarButtonItem *)sender;
 - (IBAction)pushButton_Initialize:(UIBarButtonItem *)sender;
 - (IBAction)pushButton_HowToUse:(UIBarButtonItem *)sender;
+- (IBAction)pushSeg:(UISegmentedControl *)sender;
+- (IBAction)pushCamera:(UISwitch *)sender;
+- (IBAction)pushSaveImg:(UIBarButtonItem *)sender;
 
-@end
-
-@interface UIPopoverController (iPhone)
-+ (BOOL)_popoversDisabled;
 @end
