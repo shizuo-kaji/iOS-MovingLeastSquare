@@ -166,7 +166,11 @@
 		2AF136C218CA26CB007E999A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+<<<<<<< HEAD
 				LastUpgradeCheck = 0830;
+=======
+				LastUpgradeCheck = 0700;
+>>>>>>> 0e57c80a9c08089ee89aaa5ff8f72b1737d184cb
 				ORGANIZATIONNAME = "mcg-q";
 				TargetAttributes = {
 					2AF136C918CA26CB007E999A = {
@@ -264,7 +268,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iOS Developer";
 				COPY_PHASE_STRIP = NO;
+<<<<<<< HEAD
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+=======
+>>>>>>> 0e57c80a9c08089ee89aaa5ff8f72b1737d184cb
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;

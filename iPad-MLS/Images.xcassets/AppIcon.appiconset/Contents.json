@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+<<<<<<< HEAD
       "idiom" : "iphone",
       "size" : "20x20",
       "scale" : "2x"
@@ -11,6 +12,8 @@
       "scale" : "3x"
     },
     {
+=======
+>>>>>>> 0e57c80a9c08089ee89aaa5ff8f72b1737d184cb
       "size" : "29x29",
       "idiom" : "iphone",
       "filename" : "AppIcon58x58.png",
@@ -42,6 +45,7 @@
       "scale" : "3x"
     },
     {
+<<<<<<< HEAD
       "idiom" : "ipad",
       "size" : "20x20",
       "scale" : "1x"
@@ -52,6 +56,8 @@
       "scale" : "2x"
     },
     {
+=======
+>>>>>>> 0e57c80a9c08089ee89aaa5ff8f72b1737d184cb
       "idiom" : "ipad",
       "size" : "29x29",
       "scale" : "1x"
